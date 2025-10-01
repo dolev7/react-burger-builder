@@ -1,0 +1,60 @@
+.build-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.build-control-label {
+  padding: 10px;
+  font-weight: bold;
+  width: 80px;
+}
+
+.build-control-more,
+.build-control-less {
+  display: block;
+  font: inherit;
+  padding: 5px;
+  margin: 0 5px;
+  width: 80px;
+  border: 1px solid #aa6817;
+  cursor: pointer;
+  outline: none;
+}
+
+.build-control-more {
+  background-color: #8f5e1e;
+  color: white;
+}
+
+.build-control-more:hover,
+.build-control-more:active {
+  background-color: #99703f;
+  color: white;
+}
+
+.build-control-less {
+  background-color: #d39952;
+  color: white;
+}
+
+.build-control-less:hover,
+.build-control-less:active {
+  background-color: #daa972;
+  color: white;
+}
+
+.build-control-less:disabled {
+  background-color: #ac9980;
+  border: 1px solid #7e7365;
+  color: #ccc;
+  cursor: default;
+}
+
+.build-control-less:disabled:hover,
+.build-control-less:disabled:active {
+  background-color: #ac9980;
+  color: #ccc;
+  cursor: not-allowed;
+}

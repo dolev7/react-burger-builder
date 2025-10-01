@@ -1,0 +1,30 @@
+{
+  "salad": {
+    "displayName": "Salad",
+    "price": 0.5,
+    "type": "salad",
+    "available": true,
+    "order": 1
+  },
+  "bacon": {
+    "displayName": "Bacon",
+    "price": 0.7,
+    "type": "bacon",
+    "available": true,
+    "order": 2
+  },
+  "cheese": {
+    "displayName": "Cheese",
+    "price": 0.4,
+    "type": "cheese",
+    "available": true,
+    "order": 3
+  },
+  "meat": {
+    "displayName": "Meat",
+    "price": 1.3,
+    "type": "meat",
+    "available": true,
+    "order": 4
+  }
+}

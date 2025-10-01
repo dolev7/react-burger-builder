@@ -1,0 +1,4 @@
+/* Kebab-case naming convention */
+.layout-content {
+  margin-top: 72px; /* Account for fixed toolbar height (56px) + some spacing */
+}

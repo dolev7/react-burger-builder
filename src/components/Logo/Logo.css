@@ -1,0 +1,16 @@
+.logo {
+  background-color: white;
+  padding: 8px;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.logo p {
+  color: #8f5c2c;
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1;
+}
