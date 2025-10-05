@@ -1,21 +1,7 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, getDocs, doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
 import type { Order, Ingredients, IngredientDefinition } from '../types';
 import ingredientsConfig from '../config/ingredients.json';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA6dowgDk_O5vkf_1gskDnqsVa_UDRC-tM",
-  authDomain: "burger-react-course-ad413.firebaseapp.com",
-  projectId: "burger-react-course-ad413",
-  storageBucket: "burger-react-course-ad413.firebasestorage.app",
-  messagingSenderId: "710652569728",
-  appId: "1:710652569728:web:dc9e2a52783a8014cb9e65",
-  measurementId: "G-BCV6NLS4T4"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 export class FirestoreService {
   // Submit order to Firestore

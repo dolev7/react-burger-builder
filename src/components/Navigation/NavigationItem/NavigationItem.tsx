@@ -1,20 +1,20 @@
+import { NavLink } from 'react-router-dom'
 import './NavigationItem.css'
 
 interface NavigationItemProps {
   link: string
-  active?: boolean
   children: React.ReactNode
 }
 
-const NavigationItem = ({ link, active, children }: NavigationItemProps) => {
+const NavigationItem = ({ link, children }: NavigationItemProps) => {
   return (
     <li className="navigation-item">
-      <a 
-        href={link}
-        className={active ? 'active' : undefined}
+      <NavLink 
+        to={link}
+        className={({ isActive }) => isActive ? 'active' : undefined}
       >
         {children}
-      </a>
+      </NavLink>
     </li>
   )
 }

@@ -19,6 +19,8 @@ export interface Ingredients {
 export interface Order {
   ingredients: Ingredients
   price: number
+  userId?: string // User ID who placed the order
+  userEmail?: string // User email for reference
   customer: {
     name: string
     email: string
@@ -29,6 +31,7 @@ export interface Order {
     }
     deliveryMethod: 'fastest' | 'cheapest'
   }
+  createdAt?: string // Timestamp when order was created
 }
 
 export type IngredientType = 'bread-bottom' | 'bread-top' | 'meat' | 'cheese' | 'bacon' | 'salad'

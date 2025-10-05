@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 import Burger from '../Burger/Burger'
 import BuildControls from '../Burger/BuildControls/BuildControls'
 import Modal from '../UI/Modal/Modal'
@@ -15,6 +17,9 @@ const BurgerBuilder = () => {
   const [purchasing, setPurchasing] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  
+  const navigate = useNavigate()
+  const { currentUser } = useAuth()
 
   // Fetch ingredients from database on component mount
   useEffect(() => {
@@ -112,26 +117,46 @@ const BurgerBuilder = () => {
   }
 
   const purchaseContinueHandler = async () => {
-    // TODO: Replace with actual customer data from form
+    if (!currentUser) {
+      alert('Please sign in to place an order');
+      navigate('/auth');
+      return;
+    }
+
     const orderData = {
       ingredients: ingredients,
       price: totalPrice,
+      userId: currentUser.uid, // Associate order with current user
+      userEmail: currentUser.email || undefined, // Store user email for reference
       customer: {
-        name: 'Test Customer',
-        email: 'test@example.com',
+        name: currentUser.displayName || 'Customer',
+        email: currentUser.email || 'no-email@example.com',
         address: {
-          street: 'Test Street 1',
-          zipCode: '12345',
-          country: 'Germany'
+          street: 'Address to be provided',
+          zipCode: '00000',
+          country: 'To be specified'
         },
         deliveryMethod: 'fastest' as const
-      }
+      },
+      createdAt: new Date().toISOString() // Add timestamp
     };
 
     try {
       const result = await FirestoreService.createOrder(orderData);
-      alert(`Order submitted successfully! Order ID: ${result.id}`);
+      console.log('Order created successfully:', result.id);
       setPurchasing(false);
+      
+      // Reset burger builder
+      const initialIngredients: Ingredients = {}
+      ingredientDefinitions.forEach(def => {
+        initialIngredients[def.name] = def.name === 'meat' ? 1 : 0
+      })
+      setIngredients(initialIngredients)
+      const initialPrice = FirestoreService.calculatePrice(initialIngredients, ingredientDefinitions)
+      setTotalPrice(initialPrice)
+      
+      // Redirect to orders page to see the new order
+      navigate('/orders');
     } catch (error) {
       console.error('Order submission failed:', error);
       alert('Order submission failed. Please try again.');
